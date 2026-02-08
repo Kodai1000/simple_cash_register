@@ -76,7 +76,7 @@ class product_list_gui:
                 self.buttons.append(
                     tk.Button(
                         self.frame, 
-                        text=product.name + " " + str(product.price),
+                        text=product.name + "\n" + str(product.price),
                         command=lambda product=product:self.add_product(product),
                         width=10, height=3,
                         relief=tk.RAISED,
