@@ -1,0 +1,3 @@
+[database]
+sqlite_path = "data/app.db"
+history_path = "data/history"
