@@ -1,4 +1,4 @@
-from simple_pos.core.pos.product_and_genre_manager import *
+from simple_cash_register.core.register.product_and_genre_manager import *
 class product(): #製品クラス
     def __init__(self, name, price, genre):
         self.name = name

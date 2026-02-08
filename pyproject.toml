@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "simple-pos"
+name = "simple_cash_register"
 version = "0.1.0"
 
 [tool.setuptools.packages.find]

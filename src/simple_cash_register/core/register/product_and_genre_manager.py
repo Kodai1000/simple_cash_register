@@ -7,7 +7,7 @@ def resource_path(relative_path: str) -> Path:
     if hasattr(sys, "_MEIPASS"):
         base = Path(sys._MEIPASS)
     else:
-        base = Path(__file__).resolve().parents[3] / "simple_pos"
+        base = Path(__file__).resolve().parents[3] / "simple_cash_register"
     return base / relative_path
 
 class product_and_genre_manager():
@@ -19,7 +19,7 @@ class product_and_genre_manager():
         with open(CONFIG_PATH, "r", encoding="utf-8") as f:
             config = toml.load(f)
         
-        APP_DIR = Path(os.getenv("APPDATA")) / "simple_pos"
+        APP_DIR = Path(os.getenv("APPDATA")) / "simple_cash_register"
         APP_DIR.mkdir(parents=True, exist_ok=True)
 
         db_name = Path(config["database"]["sqlite_path"]).name

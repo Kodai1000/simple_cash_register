@@ -1,5 +1,5 @@
-from simple_pos.core.pos.products import *
-from simple_pos.core.pos.history import history as History
+from simple_cash_register.core.register.products import *
+from simple_cash_register.core.register.history import history as History
 
 class table(): #テーブルクラス
     def __init__(self, bought_products: list):

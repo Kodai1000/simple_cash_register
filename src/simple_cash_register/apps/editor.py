@@ -1,4 +1,4 @@
-from simple_pos.core.pos.product_and_genre_manager import product_and_genre_manager as ProductAndGenreManager
+from simple_cash_register.core.register.product_and_genre_manager import product_and_genre_manager as ProductAndGenreManager
 import tkinter as tk
 import tkinter.ttk as ttk
 

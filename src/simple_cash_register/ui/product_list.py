@@ -1,6 +1,6 @@
 import tkinter as tk
-from simple_pos.core.pos.products import *
-from simple_pos.ui.receipt import *
+from simple_cash_register.core.register.products import *
+from simple_cash_register.ui.receipt import *
 class product_list_gui:
     def __init__(self, frame, product_list_CLASS, receipt_gui_CLASS, genres):
         # Canvas/Scrollbar を外側の frame に配置、内部フレームは canvas.create_window に渡す（pack しない）

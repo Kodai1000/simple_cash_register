@@ -1,10 +1,10 @@
 import tkinter as tk
-from simple_pos.core.pos.products import product_data_base as ProductDataBase
-from simple_pos.core.pos.tables import table as Table
-from simple_pos.core.pos.tables import table_list as TableList
-from simple_pos.ui.product_list import product_list_gui as ProductListGui
-from simple_pos.ui.receipt import receipt_gui as ReceiptGui
-from simple_pos.ui.table_list import table_list_gui as TableListGui
+from simple_cash_register.core.register.products import product_data_base as ProductDataBase
+from simple_cash_register.core.register.tables import table as Table
+from simple_cash_register.core.register.tables import table_list as TableList
+from simple_cash_register.ui.product_list import product_list_gui as ProductListGui
+from simple_cash_register.ui.receipt import receipt_gui as ReceiptGui
+from simple_cash_register.ui.table_list import table_list_gui as TableListGui
 
 class simple_pos_app:
     def __init__(self, root, the_number_of_tables):
@@ -13,7 +13,7 @@ class simple_pos_app:
         self.product_list, self.genre_names = self.product_data_base.load()
         #self.root = tk.Tk()
         self.root = root
-        self.root.title("Simple Pos")
+        self.root.title("Simple Cash Register")
         self.root.geometry("1280x720")
         self.the_number_of_tables = the_number_of_tables
         self.layout()

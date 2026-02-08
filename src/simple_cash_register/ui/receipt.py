@@ -1,5 +1,5 @@
 import tkinter as tk
-from simple_pos.core.pos.tables import *
+from simple_cash_register.core.register.tables import *
 class receipt_gui():
     def __init__(self, frame, accounter_frame, table_CLASS: table):
         self.table = table_CLASS
@@ -29,11 +29,11 @@ class receipt_gui():
         self.table = table_CLASS
         self.bought_products = []
         self.accounter_frame = accounter_frame
-        self.sum_label = tk.Label(self.accounter_frame, text=str(self.table.total))
+        self.sum_label = tk.Label(self.accounter_frame, text="合計: " + str(self.table.total))
         self.sum_label.pack()
         
         self.ten_keys = ten_key_gui(self)
-        self.change_label = tk.Label(self.accounter_frame, text=str(self.ten_keys.figure))
+        self.change_label = tk.Label(self.accounter_frame, text="お釣: " + str(self.ten_keys.figure))
         self.change_label.pack()
 
         self.ten_keys.show_ten_keys()
@@ -43,7 +43,7 @@ class receipt_gui():
 
         #self.ten_key_frame = tk.Frame(self.accounter_frame)
 
-        self.account_button = tk.Button(self.accounter_frame, text="ACCOUNT", command=self.account)
+        self.account_button = tk.Button(self.accounter_frame, text="会計", command=self.account)
         self.account_button.pack()
 
     def add(self, product_CLASS):
@@ -55,6 +55,7 @@ class receipt_gui():
             bought_product_gui.all_forget()
         self.table = table_CLASS
         self.sync()
+
     def initialize_buttons(self):
         for bought_product in self.bought_products:
             bought_product.all_forget()
@@ -75,9 +76,10 @@ class receipt_gui():
             if bought_product.bought_product.quantity < 0:
                 pass
         
-
     def renew_change_label(self):
-        self.change_label['text'] = str(self.ten_keys.figure - int(self.sum_label['text']))
+        change = self.ten_keys.figure - int(self.table.total)
+        self.change_label['text'] = "お釣: " + str(change)
+    
     def account(self):
         if self.table.account(int(self.ten_keys.figure)):
             for bought_product in self.bought_products:
@@ -92,7 +94,7 @@ class receipt_gui():
             pass
     
     def sync(self):
-        self.sum_label['text'] = self.table.total
+        self.sum_label['text'] = "合計: " + str(self.table.total)
         internal_product_length = len(self.table.bought_products)
         gui_product_length = len(self.bought_products)
         self.bought_products = self.bought_products[0:internal_product_length]
@@ -157,16 +159,16 @@ class ten_key_gui():
         self.receipt_gui = receipt_gui
         self.frame = self.receipt_gui.accounter_frame
         self.figure = 0
-        self.label = tk.Label(self.frame,text=self.figure)
+        self.label = tk.Label(self.frame, text="支払: " + str(self.figure))
         self.label.pack()
     def show_ten_keys(self):
         buttons = []
         for i in range(10):
             buttons.append(
-                tk.Button(self.frame, text=str(i),command=lambda i=i: self.add_figure(i), width=8, height=2)
+                tk.Button(self.frame, text=str(i),command=lambda i=i: self.add_figure(i), width=6, height=2)
             )
             buttons[-1].pack(side='left')
-        self.deleted_button = tk.Button(self.frame, text="◁", command=self.deleted_button, width=8, height=2)
+        self.deleted_button = tk.Button(self.frame, text="◁", command=self.deleted_button, width=6, height=2)
         self.deleted_button.pack(side='left')
     def add_figure(self, added_figure):
         strized = str(self.figure)
@@ -184,5 +186,5 @@ class ten_key_gui():
         self.renew()
         self.receipt_gui.renew_change_label()
     def renew(self):
-        self.label['text'] = str(self.figure)
+        self.label['text'] = "支払: " + str(self.figure)
     

@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from simple_pos.core.pos.history import *
+from simple_cash_register.core.register.history import *
 
 def show_history_table(ROOT, history_obj):
     root = ROOT

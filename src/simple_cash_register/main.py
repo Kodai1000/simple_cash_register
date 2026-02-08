@@ -1,4 +1,5 @@
-from simple_pos.apps.launcher import main as launcher_main
+from simple_cash_register.apps.launcher import main as launcher_main
+
 import tkinter as tk
 import tkinter.font as tkFont
 root = tk.Tk()

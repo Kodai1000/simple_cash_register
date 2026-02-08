@@ -1,7 +1,7 @@
 import tkinter as tk
-from simple_pos.apps.editor import main as editor_main
-from simple_pos.apps.history import main as history_main
-from simple_pos.apps.pos import main as pos_main
+from simple_cash_register.apps.editor import main as editor_main
+from simple_cash_register.apps.history import main as history_main
+from simple_cash_register.apps.register import main as pos_main
 
 class launcher:
     def __init__(self, ROOT):
