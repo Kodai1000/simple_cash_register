@@ -163,10 +163,10 @@ class ten_key_gui():
         buttons = []
         for i in range(10):
             buttons.append(
-                tk.Button(self.frame, text=str(i),command=lambda i=i: self.add_figure(i))
+                tk.Button(self.frame, text=str(i),command=lambda i=i: self.add_figure(i), width=8, height=2)
             )
             buttons[-1].pack(side='left')
-        self.deleted_button = tk.Button(self.frame, text="◁", command=self.deleted_button)
+        self.deleted_button = tk.Button(self.frame, text="◁", command=self.deleted_button, width=8, height=2)
         self.deleted_button.pack(side='left')
     def add_figure(self, added_figure):
         strized = str(self.figure)
