@@ -1,14 +1,13 @@
-# シンプルPOSソフトウェア
-最低限のPOSシステムを備えたレジアプリです。
+# シンプルレジ
+最低限の機能を備えたレジアプリです。
 
 ## 使用技術
 ![PYTHON](https://img.shields.io/badge/Python-yellow?logo=python)
 ![SQLITE](https://img.shields.io/badge/SQLite3-blue?logo=sqlite)
 ![TKINTER](https://img.shields.io/badge/Tkinter-green)
 
-## ソフトウェア紹介
-最低限の機能だけをそろえたシンプルなレジソフトウェアです。
-*レジ機能*、*商品・ジャンル登録と編集*、*購入履歴確認*の三つの機能から成ります。
+## 概要紹介
+**レジ機能**、**商品・ジャンル登録と編集**、**購入履歴確認**の三つの機能から成ります。
 
 ## デモ
 ### レジ画面
