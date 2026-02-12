@@ -2,28 +2,13 @@ import sys, os
 import sqlite3
 import toml
 from pathlib import Path
-
-def resource_path(relative_path: str) -> Path:
-    if hasattr(sys, "_MEIPASS"):
-        base = Path(sys._MEIPASS)
-    else:
-        base = Path(__file__).resolve().parents[3] / "simple_cash_register"
-    return base / relative_path
+from simple_cash_register.utils.base_dir import get_base_data_dir
 
 class product_and_genre_manager():
     def __init__(self):
-        BASE_DIR = Path(__file__).resolve().parents[2]
-
-        CONFIG_PATH = resource_path("config.toml")
-
-        with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-            config = toml.load(f)
         
-        APP_DIR = Path(os.getenv("APPDATA")) / "simple_cash_register"
-        APP_DIR.mkdir(parents=True, exist_ok=True)
 
-        db_name = Path(config["database"]["sqlite_path"]).name
-        DB_PATH = APP_DIR / db_name
+        DB_PATH = get_base_data_dir() / "data" / "app.db"
 
         self.conn = sqlite3.connect(str(DB_PATH))
 
