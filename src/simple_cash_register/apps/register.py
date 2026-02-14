@@ -40,7 +40,7 @@ class simple_pos_app:
         self.table_frame = tk.LabelFrame(self.top_col, text="Tables")
         self.table_frame.pack(fill="both", expand=True)
     def prepare_data(self):
-        self.table_list = TableList([Table([]) for i in range(self.the_number_of_tables)])
+        self.table_list = TableList([Table(str(i+1), []) for i in range(self.the_number_of_tables)])
     def prepare_gui_classes(self):
         self.receipt_gui = ReceiptGui(self.receipt_frame, self.payment_frame, self.table_list.tables[0])
         self.table_list_gui = TableListGui(self.table_frame, self.table_list, self.receipt_gui)
