@@ -1,8 +1,9 @@
 from simple_cash_register.core.register.products import *
 from simple_cash_register.core.register.history import history as History
-
+from simple_cash_register.core.register.print import print_receipt
 class table(): #テーブルクラス
-    def __init__(self, bought_products: list):
+    def __init__(self, name:str, bought_products: list):
+        self.name = name
         self.bought_products = bought_products
         self.total = 0
     def add(self, product: product):#
@@ -43,8 +44,10 @@ class table(): #テーブルクラス
         for bought_product in self.bought_products:
             total += bought_product.product.price * bought_product.quantity
         self.total = total
+        return total
     def account(self, pay):
         if self.total <= pay:
+            print_receipt(self)
             history = History()
             history.from_table(self)
             self.bought_products = []
