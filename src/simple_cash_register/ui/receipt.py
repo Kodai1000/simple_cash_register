@@ -30,7 +30,7 @@ class receipt_gui():
         self.table = table_CLASS
         self.bought_products = []
         self.accounter_frame = accounter_frame
-        self.sum_label = tk.Label(self.accounter_frame, text="合計: " + str(self.table.total))
+        self.sum_label = tk.Label(self.accounter_frame, text="合計: " + str(self.table.totals()))
         self.sum_label.pack()
         
         self.ten_keys = ten_key_gui(self)
@@ -84,7 +84,7 @@ class receipt_gui():
                 pass
         
     def renew_change_label(self):
-        change = self.ten_keys.figure - int(self.table.total)
+        change = self.ten_keys.figure - int(self.table.totals())
         self.change_label['text'] = "お釣: " + str(change)
     
     def account(self):
@@ -102,7 +102,7 @@ class receipt_gui():
     def only_print(self):
         print_receipt(self.table, mode="abnormal")
     def sync(self):
-        self.sum_label['text'] = "合計: " + str(self.table.total)
+        self.sum_label['text'] = "合計: " + str(self.table.totals())
         internal_product_length = len(self.table.bought_products)
         gui_product_length = len(self.bought_products)
         self.bought_products = self.bought_products[0:internal_product_length]
