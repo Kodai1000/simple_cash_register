@@ -10,6 +10,7 @@ class table_list_gui():
         self.receipt = receipt_CLASS
     def show_buttons(self):
         self.buttons = [tk.Button(self.frame, text="table " + str(i), command=lambda i=i:self.change_table(i)) for i, table in enumerate(self.table_list_CLASS.tables)]
+        self.change_table(0)
         for button in self.buttons:
             button.pack(side='left')
     def change_table(self, i):

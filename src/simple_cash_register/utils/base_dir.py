@@ -14,7 +14,7 @@ def get_base_data_dir() -> Path:
         base_dir = Path(sys.executable).parent
     else:
         # 通常実行時
-        base_dir = Path(__file__).resolve().parent
+        base_dir = Path(__file__).resolve().parents[3]
 
     return base_dir
 

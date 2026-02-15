@@ -1,5 +1,6 @@
 import tkinter as tk
 from simple_cash_register.core.register.tables import *
+from simple_cash_register.core.register.print import *
 class receipt_gui():
     def __init__(self, frame, accounter_frame, table_CLASS: table):
         self.table = table_CLASS
@@ -39,6 +40,9 @@ class receipt_gui():
         self.ten_keys.show_ten_keys()
         self.initialize_buttons()
 
+        self.print_button = tk.Button(self.frame, text="印刷", command=self.only_print)
+        self.print_button.pack(side="top")
+
        
 
         #self.ten_key_frame = tk.Frame(self.accounter_frame)
@@ -53,8 +57,11 @@ class receipt_gui():
     def change_table(self, table_CLASS):
         for bought_product_gui in self.bought_products:
             bought_product_gui.all_forget()
+        
         self.table = table_CLASS
+        self.ten_keys.change_table()
         self.sync()
+        self.renew_change_label()
 
     def initialize_buttons(self):
         for bought_product in self.bought_products:
@@ -92,7 +99,8 @@ class receipt_gui():
             self.sync()
         else:
             pass
-    
+    def only_print(self):
+        print_receipt(self.table, mode="abnormal")
     def sync(self):
         self.sum_label['text'] = "合計: " + str(self.table.total)
         internal_product_length = len(self.table.bought_products)
@@ -120,12 +128,13 @@ class bought_product_gui():
         self.bought_product = bought_product
         self.receipt_gui = receipt_gui
     def show(self):
-        self.name_label = tk.Label(self.frame, text=self.bought_product.product.name)
-        self.unit_price_label = tk.Label(self.frame, text=self.bought_product.product.price)
-        self.quantity_label = tk.Label(self.frame)
-        self.remove_button = tk.Button(self.frame, text="←", command=self.remove)
-        self.add_button = tk.Button(self.frame, text="→", command=self.add)
-        self.sum_price_label = tk.Button(self.frame)
+        product_font=tk.font.Font(family="MS Gothic", size=20)
+        self.name_label = tk.Label(self.frame, text=self.bought_product.product.name, font=product_font)
+        self.unit_price_label = tk.Label(self.frame, text=self.bought_product.product.price, font=product_font)
+        self.quantity_label = tk.Label(self.frame, font=product_font)
+        self.remove_button = tk.Button(self.frame, text="←", command=self.remove, font=product_font, bg="lightblue")
+        self.add_button = tk.Button(self.frame, text="→", command=self.add, font=product_font, bg="lightblue")
+        self.sum_price_label = tk.Button(self.frame, font=product_font)
         self.renew()
 
         self.name_label.pack(side="left")
@@ -158,17 +167,18 @@ class ten_key_gui():
     def __init__(self, receipt_gui:receipt_gui):
         self.receipt_gui = receipt_gui
         self.frame = self.receipt_gui.accounter_frame
-        self.figure = 0
+        self.figure = self.receipt_gui.table.pay
         self.label = tk.Label(self.frame, text="支払: " + str(self.figure))
         self.label.pack()
     def show_ten_keys(self):
         buttons = []
+        key_font=tk.font.Font(family="MS Gothic", size=15)
         for i in range(10):
             buttons.append(
-                tk.Button(self.frame, text=str(i),command=lambda i=i: self.add_figure(i), width=6, height=2)
+                tk.Button(self.frame, text=str(i),command=lambda i=i: self.add_figure(i), width=6, height=2, bg="lightblue", font=key_font)
             )
             buttons[-1].pack(side='left')
-        self.deleted_button = tk.Button(self.frame, text="◁", command=self.deleted_button, width=6, height=2)
+        self.deleted_button = tk.Button(self.frame, text="◁", command=self.deleted_button, width=4, height=2, bg="lightblue", font=key_font)
         self.deleted_button.pack(side='left')
     def add_figure(self, added_figure):
         strized = str(self.figure)
@@ -185,6 +195,9 @@ class ten_key_gui():
             self.figure = int(strized)
         self.renew()
         self.receipt_gui.renew_change_label()
+    def change_table(self):
+        self.figure = self.receipt_gui.table.pay
+        self.renew()
     def renew(self):
         self.label['text'] = "支払: " + str(self.figure)
-    
+        self.receipt_gui.table.pay = self.figure

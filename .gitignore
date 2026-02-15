@@ -179,3 +179,4 @@ pyrightconfig.json
 data/app.db
 data/pgd_data.db
 data/history
+data/option

@@ -6,5 +6,5 @@ import tkinter.font as tkFont
 make_dir("data")
 root = tk.Tk()
 default_font = tkFont.nametofont("TkDefaultFont")
-default_font.configure(size=12, weight='bold')
+default_font.configure(family="MS Gothic", size=15, weight='bold')
 launcher = launcher_main(root)

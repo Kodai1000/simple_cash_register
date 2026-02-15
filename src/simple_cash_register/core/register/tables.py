@@ -6,6 +6,7 @@ class table(): #テーブルクラス
         self.name = name
         self.bought_products = bought_products
         self.total = 0
+        self.pay = 0
     def add(self, product: product):#
         existing_product_id = self.check_product(product)
         if existing_product_id >= 0:
@@ -47,6 +48,7 @@ class table(): #テーブルクラス
         return total
     def account(self, pay):
         if self.total <= pay:
+            self.pay = pay
             print_receipt(self)
             history = History()
             history.from_table(self)
