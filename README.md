@@ -1,5 +1,6 @@
 # シンプルレジ
-最低限の機能を備えたレジアプリです。
+Windows向け最低限の機能を備えたレジアプリです。
+サーマルプリンター印刷機能もあります。
 
 ## 使用技術
 ![PYTHON](https://img.shields.io/badge/Python-yellow?logo=python)
@@ -16,3 +17,5 @@
 ![商品・ジャンル編集画面](pictures/editor_image.png)
 ### 購入履歴画面
 ![購入履歴画面](pictures/history_image.png)
+### 印刷できるレシートのサンプル
+![レシート](pictures/receipt_sample_picture.jpg)
